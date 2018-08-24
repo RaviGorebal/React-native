@@ -1,6 +1,6 @@
 ======================= Router =======================
 
-App.js
+                          ========== App.js  File =======================
 
 import React from 'react';
 import Routes from './components/Routes';
@@ -12,3 +12,69 @@ export default class App extends React.Component {
      );
   }
 }
+
+
+=====================================================================
+                         =========== Router.js  File ===============
+
+import React from 'react'
+import {Router, Scene } from 'react-native-router-flux'
+import Home from './Home'
+import About from './About'
+
+
+const Routes = () => (
+   <Router>
+      <Scene key = "root">
+          <Scene key = "home" component = {Home} title = "HOME" initial = {true} />
+          <Scene key = "about" component = {About} title = "ABOUT"/>
+      </Scene>
+   </Router>
+)
+
+export default Routes
+
+
+========================================================================================
+
+============================== Home.js =================================================
+
+import React from 'react'
+import { TouchableOpacity, Text } from 'react-native'
+import { Actions } from 'react-native-router-flux'
+
+
+const Home = () => {
+     const goToAbout = () => {
+           Actions.about()
+}
+   return (
+         <TouchableOpacity style = {{ margin: 128 }} onPress = { goToAbout }>
+           <Text> This is Home </Text>
+         </TouchableOpacity>
+       )
+}
+
+export default Home
+
+
+==============================================================================
+                 ================= About.js ================
+
+import React from 'react'
+import { TouchableOpacity, Text } from 'react-native'
+import { Actions } from 'react-native-router-flux'
+
+const About = () => {
+   const goToHome = () => {
+          Actions.home()
+}
+
+return (
+       <TouchableOpacity style = {{ margin: 128 }} onPress = { goToHome }>
+          <Text> This is ABOUT </Text>
+       </TouchableOpacity>
+     )
+}
+
+export default About
